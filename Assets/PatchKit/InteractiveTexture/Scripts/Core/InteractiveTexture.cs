@@ -10,7 +10,7 @@ namespace PatchKit.InteractiveTexture.Core
         IPointerEnterHandler
     {
         private float _widthImage, _heightImage, _widthTexture, _heightTexture;
-        private Vector2 _normalisedPos, _posInImage;
+        private Vector2 _normalisedPos, _previousNormalisedPos;
         private GraphicRaycaster _raycaster;
         private PointerEventData _pointerEventData;
         private List<RaycastResult> _results;
@@ -19,8 +19,8 @@ namespace PatchKit.InteractiveTexture.Core
         private RectTransform _rectTransform;
         private bool _isPointer;
 
-        public event Action OnClickDown;
-        public event Action OnClickUp;
+        public event Action<PointerEventData> OnClickDown;
+        public event Action<PointerEventData> OnClickUp;
         public event Action<Vector2> OnMove;
         public event Action OnExit;
 
@@ -37,12 +37,12 @@ namespace PatchKit.InteractiveTexture.Core
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            OnClickDown?.Invoke();
+            OnClickDown?.Invoke(eventData);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            OnClickUp?.Invoke();
+            OnClickUp?.Invoke(eventData);
         }
 
         private void OnPointerMove()
@@ -62,7 +62,11 @@ namespace PatchKit.InteractiveTexture.Core
             _normalisedPos = new Vector2(Mathf.RoundToInt(Mathf.Abs(mousePosition.x) / _widthImage * _widthTexture),
                 Mathf.RoundToInt(Mathf.Abs(mousePosition.y) / _heightImage * _heightTexture));
 
-            OnMove?.Invoke(_normalisedPos);
+            if (_previousNormalisedPos != _normalisedPos)
+            {
+                _previousNormalisedPos = _normalisedPos;
+                OnMove?.Invoke(_normalisedPos);
+            }
         }
 
         public void OnPointerExit(PointerEventData eventData)

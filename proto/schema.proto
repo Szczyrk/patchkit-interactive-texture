@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "Proto.Messages";
+
+/**
+ * 
+ */
+message OverlayReceivedKeyboardInputMessage {
+  enum EVENT_TYPE {
+    KEY_DOWN = 0;
+    KEY_UP = 1;
+  }
+  string key = 1;
+  EVENT_TYPE event_type = 2;
+}
+
+message OverlayReceivedMouseMoveMessage {
+  uint32 x_position = 1;
+  uint32 y_position = 2;
+}
+
+message OverlayReceivedMouseInputMessage {
+  enum EVENT_TYPE {
+    BUTTON_DOWN = 0;
+    BUTTON_UP = 1;
+  }
+
+enum BUTTON_TYPE {
+    RIGHT = 0;
+    LEFT = 1;
+    MIDDLE = 2;
+  }
+
+EVENT_TYPE event_type = 1;
+BUTTON_TYPE button_type = 2;
+}
+
+message OverlayReceivedMouseWheelMoveMessage {
+  uint32 delta = 1;
+  }
+
+message BoolValue {
+  bool value = 1;
+}

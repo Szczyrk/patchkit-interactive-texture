@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace PatchKit.InteractiveTexture.UI
@@ -26,12 +27,12 @@ namespace PatchKit.InteractiveTexture.UI
             interactiveTexture.OnExit -= OnExit;
         }
 
-        private void OnClickDown()
+        private void OnClickDown(PointerEventData eventData)
         {
             _click = "Click";
         }
 
-        private void OnClickUp()
+        private void OnClickUp(PointerEventData eventData)
         {
             _click = "";
         }

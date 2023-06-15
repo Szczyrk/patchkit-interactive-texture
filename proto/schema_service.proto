@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "schema.proto";
+
+option csharp_namespace = "Proto.Services";
+
+/**
+ * 
+ */
+service MessageService {
+  rpc MessageOverlayReceivedKeyboardInputMessage(OverlayReceivedKeyboardInputMessage) returns (BoolValue) {}
+  rpc MessageOverlayReceivedMouseMoveMessage(OverlayReceivedMouseMoveMessage) returns (BoolValue) {}
+  rpc MessageOverlayReceivedMouseInputMessage(OverlayReceivedMouseInputMessage) returns (BoolValue) {}
+  rpc MessageOverlayReceivedMouseWheelMoveMessage(OverlayReceivedMouseWheelMoveMessage) returns (BoolValue) {}
+}
