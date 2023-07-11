@@ -100,3 +100,7 @@ MSBuildForUnity.Common.props
 csharp/bin
 
 !/csharp/csharp.csproj
+
+/Assets/StreamingAssets/FFmpegOut/Windows/*
+/Assets/StreamingAssets/FFmpegOut/macOS/*
+/Assets/StreamingAssets/FFmpegOut/Linux/*
