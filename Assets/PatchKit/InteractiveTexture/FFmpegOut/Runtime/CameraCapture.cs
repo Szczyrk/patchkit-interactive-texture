@@ -11,14 +11,14 @@ namespace FFmpegOut
     {
         #region Public properties
 
-        [SerializeField] int _width = 1920;
+        int _width = 1920;
 
         public int width {
             get { return _width; }
             set { _width = value; }
         }
 
-        [SerializeField] int _height = 1080;
+        int _height = 1080;
 
         public int height {
             get { return _height; }
@@ -118,6 +118,9 @@ namespace FFmpegOut
 
         IEnumerator Start()
         {
+            _height = Screen.height;
+            _width = Screen.width;
+
             // Sync with FFmpeg pipe thread at the end of every frame.
             for (var eof = new WaitForEndOfFrame();;)
             {
